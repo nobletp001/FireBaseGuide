@@ -72,7 +72,7 @@ UserEmail.innerHTML=''
   displayGuide.innerHTML = html;
      }
 else{
-  displayGuide.innerHTML = `<div  style="font-size: 3rem; text-align: center;">Login to Create Guide</div>`;
+  displayGuide.innerHTML = `<div  style="font-size: 3rem; text-align: center;">Login to Read Movie Details</div>`;
 
 }
 
