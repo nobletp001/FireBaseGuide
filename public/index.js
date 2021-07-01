@@ -14,15 +14,6 @@ const setUI=(user)=>{
        user.email
      }
 
-<div class='card'>
- <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-     <img src='${doc.data().userUrl}' alt="${
-       doc.data().ImageName
-     }"  height="90px" width='100%'/>
-  <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
- </div>
 
 </div>
 
