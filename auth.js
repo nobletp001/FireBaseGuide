@@ -12,6 +12,7 @@ auth
       setUI();
     }
   })
+ 
 
 
 const signupForm = document.querySelector("#CreateSubmit");
@@ -25,12 +26,52 @@ signupForm.addEventListener('submit', (e)=>{
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         var user = userCredential.user;
+        
         // console.log(user.uid)
-         db.collection("users").doc(user.uid).set({
-          FirstName: signupForm["defaultForm-fm"].value,
-          LastName: signupForm["defaultForm-ln"].value,
-          Bio: signupForm["defaultForm-Bio"].value
-        });
+         db.collection("users").doc(user.uid).set(
+           {
+             FirstName: signupForm["defaultForm-fm"].value,
+             LastName: signupForm["defaultForm-ln"].value,
+             Bio: signupForm["defaultForm-Bio"].value,
+           },
+           { merge: true }
+         );
+
+        const file = document.getElementById("uploadImages").files[0];
+        const ImageId = user.uid;
+        const ImageName=file.name;
+        const nameFile = new Date()+ '-'+ file.name;
+        const metaData = {
+          contentType:file.type
+        }
+ 
+
+        const task = storageFile
+          .ref(ImageId)
+          .child(nameFile)
+          .put(file, metaData);
+        task.then((snapshot)=>{
+         
+   storageFile
+     .ref(ImageId)
+     .child(nameFile)
+     .getDownloadURL()
+     .then((url) => {
+       // Insert url into an <img> tag to "download"
+       console.log(url);
+         db.collection("users").doc(ImageId).set(
+           {
+             userUrl: url,
+             ImageName: ImageName,
+           },
+           { merge: true }
+         );
+     });
+          console.log(snapshot)
+        }).catch((err)=>{
+          console.log(err.message)
+        })
+       
          if(user){
 
 signupForm.reset();
@@ -142,4 +183,5 @@ window.setTimeout(
  })
 }
   })
+
 

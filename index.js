@@ -4,22 +4,42 @@ const UserEmail = document.getElementById("UserEmail");
 const setUI=(user)=>{
   if(user){
 
- db.collection('users').doc(user.uid).get().then((doc)=>{
-UserEmail.innerHTML = `<div style="color: black; font-size: 1rem; font-weight: bold;"> Login As ${
-  user.email
-}</div>
-<div style="color: black; font-size: 1rem; font-weight: bold;"> First Name :${
-  doc.data().FirstName
-}</div >
-<div style="color: black; font-size: 1rem; font-weight: bold;">Last Name: ${
-  doc.data().LastName
-}</div>
-<div style="color: black; font-size: 1rem; font-weight: bold;">Bio: ${
-  doc.data().Bio
-}</div>
-`;
 
- })
+ db.collection("users")
+   .doc(user.uid)
+   .onSnapshot((doc) => {
+     console.log(doc.data().userUrl);
+
+     UserEmail.innerHTML = `<div style="color: black; font-size: 1rem; font-weight: bold;"> Login As ${
+       user.email
+     }
+
+<div class='card'>
+ <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+     <img src='${doc.data().userUrl}' alt="${
+       doc.data().ImageName
+     }"  height="90px" width='100%'/>
+  <a href="#!">
+      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+    </a>
+ </div>
+
+</div>
+
+</div>
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;"> First Name :${
+       doc.data().FirstName
+     }
+</div >
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Last Name: ${
+       doc.data().LastName
+     }</div>
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Bio: ${
+       doc.data().Bio
+     }</div>
+
+`;
+   });
  
 LogInLink.forEach((item) => (item.style.display = "block"));
 LogOutLink.forEach((item) => (item.style.display = "none"));

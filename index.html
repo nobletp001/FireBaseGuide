@@ -84,9 +84,10 @@
   <div class="btn  dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1rem; font-weight: bold;">
     Account
   </div>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 20rem; height: 10rem;">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 20rem; height: 20rem;">
     <h4 style="text-align: center;"> Account Details</h1>
-      <div id="UserEmail" style="text-align: center;"></div>
+      <div id="UserEmail" style="text-align: center; "></div>
+
   </div>
 </div>
       </div>
@@ -154,10 +155,10 @@
     <div class="md-form " >
           <label data-error="wrong" data-success="right" for="defaultForm-name">First Name</label>
 
-          <input type="text" id="defaultForm-fm" class="form-control validate" >
+          <input type="text" id="defaultForm-fm" class="form-control validate" required>
         </div>
           <div class="md-form " >
-          <label data-error="wrong" data-success="right" for="defaultForm-LN">Last Name</label>
+          <label data-error="wrong" data-success="right" for="defaultForm-LN" required>Last Name</label>
 
           <input type="text" id="defaultForm-ln" class="form-control validate" >
         </div>
@@ -173,11 +174,14 @@
           <input type="password" id="defaultForm-pass" class="form-control validate">
         </div>
           <div class="md-form " >
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Bio</label>
+          <label data-error="wrong" data-success="right" for="defaultForm-email" required>Bio</label>
 
           <input type="text" id="defaultForm-Bio" class="form-control validate" >
         </div>
-
+        <div class="mt-1">
+          <label class="form-label" for="customFile">Upload Images</label>
+<input type="file" class="form-control" id="uploadImages" />
+        </div>
         <div id="errorMsg" style="color: red;"></div>
       </div>
 
@@ -242,6 +246,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
 
 
 <script>
@@ -259,6 +265,8 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db=firebase.firestore();
+  const storageFile =firebase.storage()
+  // console.log(storage)
   const auth = firebase.auth()
     db.settings({
     timestampsInSnapshots: true
