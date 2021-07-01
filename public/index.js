@@ -17,17 +17,6 @@ const setUI=(user)=>{
 
 </div>
 
-</div>
-<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;"> First Name :${
-       doc.data().FirstName
-     }
-</div >
-<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Last Name: ${
-       doc.data().LastName
-     }</div>
-<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Bio: ${
-       doc.data().Bio
-     }</div>
 
 `;
    });
