@@ -8,7 +8,7 @@ const setUI=(user)=>{
  db.collection("users")
    .doc(user.uid)
    .onSnapshot((doc) => {
-     console.log(doc.data().userUrl);
+    //  console.log(doc.data().userUrl);
 
      UserEmail.innerHTML = `<div style="color: black; font-size: 1rem; font-weight: bold;"> Login As ${
        user.email
