@@ -15,6 +15,18 @@ const setUI=(user)=>{
      }
 
 
+ 
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;"> First Name :${
+       doc.data().FirstName
+     }
+</div >
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Last Name: ${
+       doc.data().LastName
+     }</div>
+<div style="color: black; font-size: 1rem; font-weight: bold; padding-top: 0.5rem;">Bio: ${
+       doc.data().Bio
+     }</div>
+
 </div>
 
 
@@ -44,15 +56,15 @@ UserEmail.innerHTML=''
     
 <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
   <div class="card">
-    <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading96">
+    <div class="card-header  z-depth-1" role="tab" id="heading96">
       <h5 class="text-uppercase mb-0 py-1">
-        <a class="white-text font-weight-bold" data-toggle="collapse" href="#ID${dat.id}" aria-expanded="true"
+        <a class="white-text font-weight-bold " data-toggle="collapse" href="#ID${dat.id}" aria-expanded="true"
           aria-controls="collapse96">
           ${guide.Title}
         </a>
       </h5>
     </div>
-    <div id="ID${dat.id}" class="collapse show" role="tabpanel" aria-labelledby="heading96"
+    <div id="ID${dat.id}" class="collapse show " role="tabpanel" aria-labelledby="heading96"
       data-parent="#accordionEx23">
       <div class="card-body">
         <div class="row my-4">

@@ -1,6 +1,6 @@
+// console.log(user)
 auth
   .onAuthStateChanged((user) => {
-    // console.log(user)
     if (user) {
       db.collection("Guide").onSnapshot((snapshot) => {
         setGuide(snapshot.docs);
@@ -37,40 +37,42 @@ signupForm.addEventListener('submit', (e)=>{
            { merge: true }
          );
 
-        const file = document.getElementById("uploadImages").files[0];
-        const ImageId = user.uid;
-        const ImageName=file.name;
-        const nameFile = new Date()+ '-'+ file.name;
-        const metaData = {
-          contentType:file.type
-        }
+        // const file = document.getElementById("uploadImages").files[0];
+        // const ImageId = user.uid;
+        // const ImageName=file.name;
+        // const nameFile = new Date()+ '-'+ file.name;
+        // const metaData = {
+        //   contentType:file.type
+        // }
  
 
-        const task = storageFile
-          .ref(ImageId)
-          .child(nameFile)
-          .put(file, metaData);
-        task.then((snapshot)=>{
+        // const task = storageFile
+        //   .ref(ImageId)
+        //   .child(nameFile)
+        //   .put(file, metaData);
+  //       task.then((snapshot)=>{
          
-   storageFile
-     .ref(ImageId)
-     .child(nameFile)
-     .getDownloadURL()
-     .then((url) => {
-       // Insert url into an <img> tag to "download"
-       console.log(url);
-         db.collection("users").doc(ImageId).set(
-           {
-             userUrl: url,
-             ImageName: ImageName,
-           },
-           { merge: true }
-         );
-     });
-          console.log(snapshot)
-        }).catch((err)=>{
-          console.log(err.message)
-        })
+  //  storageFile
+  //    .ref(ImageId)
+  //    .child(nameFile)
+  //    .getDownloadURL()
+  //    .then((url) => {
+  //      // Insert url into an <img> tag to "download"
+  //     //  console.log(url);
+  //       //  db.collection("users").doc(ImageId).set(
+  //       //    {
+  //       //      userUrl: url,
+  //       //      ImageName: ImageName,
+  //       //    },
+  //       //    { merge: true }
+  //       //  )
+  //    }).catch((err)=>{
+  //      console.log(err);
+  //    })
+  //         // console.log(snapshot)
+  //       }).catch((err)=>{
+  //         console.log(err.message)
+  //       })
        
          if(user){
 
@@ -101,7 +103,7 @@ const logOut = document.getElementById("LogOut-Me");
 logOut.addEventListener('click', (e)=>{
     e.preventDefault();
 
-    var txt;
+    
     if (confirm("Are you sure you want to logout")) {
     auth.signOut().then(() => {
       // console.log("sign Out");
@@ -113,7 +115,7 @@ logOut.addEventListener('click', (e)=>{
       console.log(error)
     });
     } else {
-      txt = "You pressed Cancel!";
+     console.log('cancel')
     }
     
 })
@@ -129,14 +131,14 @@ const logInform = document.getElementById("CreateLogin");
      .signInWithEmailAndPassword(emailLogin, passwordLogin)
      .then((userCredential) => {
        var user = userCredential.user;
-       if (user){
+      
 logInform.reset();
   $(".modal").modal("hide");
   window.setTimeout(
     'alert("You Have successfully Login into your Account");window.close();',
     1000
   );
-       } 
+       
      })
      .catch((error) => {
        var errorCode = error.code;
